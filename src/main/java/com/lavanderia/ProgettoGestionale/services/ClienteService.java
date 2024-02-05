@@ -5,6 +5,7 @@ import com.lavanderia.ProgettoGestionale.models.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,4 +62,21 @@ public class ClienteService {
         return res;
     }
 
+    public String deleteCapo(Integer idCapo, Integer IdCliente) {
+        String res = null;
+        try{
+            Optional<Cliente> oc = clienteRepository.findById(IdCliente);
+            if(oc.isPresent()){
+                Cliente cliente = oc.get();
+                cliente.getCapi().removeIf(capo -> capo.getIdCapo().equals(idCapo));
+                clienteRepository.save(cliente);
+            }
+
+            res = "OK";
+        }catch (Exception e){
+            e.printStackTrace();
+            res = "KO";
+        }
+        return res;
+    }
 }

@@ -62,5 +62,12 @@ public class MainController {
         return ResponseEntity.ok(res);
     }
 
+    @DeleteMapping("/cliente/capo/{idCliente}/{idCapo}")
+    public ResponseEntity<String> deleteCapo(@PathVariable Integer idCapo, @PathVariable Integer idCliente){
+        String res = clienteService.deleteCapo(idCapo, idCliente);
+
+        return ResponseEntity.ok(res);
+    }
+
 
 }
