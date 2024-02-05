@@ -22,15 +22,16 @@ public class MainController {
     @GetMapping("/clienti")
     public ResponseEntity<List<Cliente>> getClienti(){
 
-        List<Cliente> persone = clienteService.getAllClienti();
-        return ResponseEntity.ok(persone);
+        return ResponseEntity.ok(clienteService.getAllClienti());
     }
 
-    @GetMapping("/cliente/{idCliente}")
-    public ResponseEntity<Cliente> getCliente(@PathVariable Integer idCliente){
+    @GetMapping("/cliente")
+    public ResponseEntity<List<Cliente>> getCliente(@RequestParam(required = false) Integer idCliente,
+                                              @RequestParam(required = false) String nome,
+                                              @RequestParam(required = false) String cognome){
 
-        Cliente cliente = clienteService.findCliente(idCliente);
-        return ResponseEntity.ok(cliente);
+
+        return ResponseEntity.ok(clienteService.ricercaEstesa(idCliente, nome, cognome));
     }
 
     @PostMapping("/cliente")
@@ -80,6 +81,5 @@ public class MainController {
         return ResponseEntity.ok(res);
 
     }
-
 
 }

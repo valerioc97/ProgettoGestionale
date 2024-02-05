@@ -6,10 +6,9 @@ import com.lavanderia.ProgettoGestionale.models.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class ClienteService {
@@ -21,9 +20,21 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    public Cliente findCliente(Integer id){
-        Optional<Cliente> op = clienteRepository.findById(id);
-        return op.isPresent() ? op.get() : new Cliente();
+    public List<Cliente> ricercaEstesa(Integer id, String nome, String cognome) {
+        Cliente cliente;
+        List<Cliente> clienti = new ArrayList<>();
+        if(id != null){
+            Optional<Cliente> op = clienteRepository.findById(id);
+            clienti.add(op.isPresent() ? op.get() : new Cliente());
+        }else if(nome != null && cognome != null){
+            clienti.add(clienteRepository.findByNomeAndCognome(nome, cognome));
+        } else if (nome != null) {
+            clienti = clienteRepository.findByNome(nome);
+        }else if(cognome != null){
+            clienti.add(clienteRepository.findByCognome(cognome));
+        }
+        return clienti;
+
     }
 
     public String postCliente(Cliente cliente){
@@ -99,4 +110,6 @@ public class ClienteService {
         }
         return res;
     }
+
+
 }
