@@ -1,6 +1,7 @@
 package com.lavanderia.ProgettoGestionale.Controlles;
 
 import com.lavanderia.ProgettoGestionale.Assembler.CostruzioneModelInput;
+import com.lavanderia.ProgettoGestionale.dtos.CapoDto;
 import com.lavanderia.ProgettoGestionale.dtos.ClienteDto;
 import com.lavanderia.ProgettoGestionale.models.Capi;
 import com.lavanderia.ProgettoGestionale.models.Cliente;
@@ -67,6 +68,17 @@ public class MainController {
         String res = clienteService.deleteCapo(idCapo, idCliente);
 
         return ResponseEntity.ok(res);
+    }
+
+    @PostMapping("/cliente/capo/{idCliente}")
+    public ResponseEntity<String> inserimentoCapo(@RequestBody CapoDto capoDto, @PathVariable Integer idCliente){
+
+        Capi capo = new CostruzioneModelInput().dtoToModel(capoDto);
+
+        String res = clienteService.inserimentoCapo(capo, idCliente);
+
+        return ResponseEntity.ok(res);
+
     }
 
 

@@ -1,6 +1,7 @@
 package com.lavanderia.ProgettoGestionale.services;
 
 import com.lavanderia.ProgettoGestionale.interfaces.ClienteRepository;
+import com.lavanderia.ProgettoGestionale.models.Capi;
 import com.lavanderia.ProgettoGestionale.models.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ClienteService {
@@ -70,6 +72,24 @@ public class ClienteService {
                 Cliente cliente = oc.get();
                 cliente.getCapi().removeIf(capo -> capo.getIdCapo().equals(idCapo));
                 clienteRepository.save(cliente);
+            }
+
+            res = "OK";
+        }catch (Exception e){
+            e.printStackTrace();
+            res = "KO";
+        }
+        return res;
+    }
+
+    public String inserimentoCapo(Capi capo, Integer idCliente) {
+        String res = null;
+        try{
+            Optional<Cliente> oc = clienteRepository.findById(idCliente);
+            if(oc.isPresent()){
+                Cliente cliente = oc.get();
+                cliente.getCapi().add(capo);
+                clienteRepository.saveAndFlush(cliente);
             }
 
             res = "OK";
