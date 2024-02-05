@@ -21,11 +21,10 @@ public class ClienteService {
     }
 
     public List<Cliente> ricercaEstesa(Integer id, String nome, String cognome) {
-        Cliente cliente;
         List<Cliente> clienti = new ArrayList<>();
         if(id != null){
             Optional<Cliente> op = clienteRepository.findById(id);
-            clienti.add(op.isPresent() ? op.get() : new Cliente());
+            clienti.add(op.orElseGet(Cliente::new));
         }else if(nome != null && cognome != null){
             clienti.add(clienteRepository.findByNomeAndCognome(nome, cognome));
         } else if (nome != null) {
@@ -38,7 +37,7 @@ public class ClienteService {
     }
 
     public String postCliente(Cliente cliente){
-        String res = null;
+        String res;
         try{
             clienteRepository.save(cliente);
             res = "OK";
@@ -51,7 +50,7 @@ public class ClienteService {
     }
 
     public String deleteCliente(Integer id){
-        String res = null;
+        String res;
         try{
             clienteRepository.deleteById(id);
             res="OK";
@@ -63,7 +62,7 @@ public class ClienteService {
     }
 
     public String deleteClienti(){
-        String res = null;
+        String res;
 
         try{
             clienteRepository.deleteAll();
@@ -76,7 +75,7 @@ public class ClienteService {
     }
 
     public String deleteCapo(Integer idCapo, Integer IdCliente) {
-        String res = null;
+        String res;
         try{
             Optional<Cliente> oc = clienteRepository.findById(IdCliente);
             if(oc.isPresent()){
@@ -94,7 +93,7 @@ public class ClienteService {
     }
 
     public String inserimentoCapo(Capi capo, Integer idCliente) {
-        String res = null;
+        String res;
         try{
             Optional<Cliente> oc = clienteRepository.findById(idCliente);
             if(oc.isPresent()){
