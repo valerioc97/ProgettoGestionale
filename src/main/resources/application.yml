@@ -1,0 +1,29 @@
+# Spring Boot application configuration
+
+# Server configuration
+server:
+  port: 8080
+
+# Database configuration
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/lavanderia
+    username: root
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+# Logging configuration
+logging:
+  level:
+    root: INFO
+    com.example: DEBUG
+
+# Custom application properties
+custom:
+  app:
+    name: My Spring Boot App
+    version: 1.0
+    description: This is a sample Spring Boot application configuration.
