@@ -4,26 +4,25 @@ public class ClienteDto {
 
     private String nome;
     private String cognome;
-    private String comuneDiNascita;
+    private String indirizzo;
 
-    private String nomeCapo;
-    private String descrizione;
+    private String numeroDiTelefono;
 
-    public String getNomeCapo() {
-        return nomeCapo;
+    public String getIndirizzo() {
+        return indirizzo;
     }
 
-    public ClienteDto setNomeCapo(String nomeCapo) {
-        this.nomeCapo = nomeCapo;
+    public ClienteDto setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
         return this;
     }
 
-    public String getDescrizione() {
-        return descrizione;
+    public String getNumeroDiTelefono() {
+        return numeroDiTelefono;
     }
 
-    public ClienteDto setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
+    public ClienteDto setNumeroDiTelefono(String numeroDiTelefono) {
+        this.numeroDiTelefono = numeroDiTelefono;
         return this;
     }
 
@@ -42,15 +41,6 @@ public class ClienteDto {
 
     public ClienteDto setCognome(String cognome) {
         this.cognome = cognome;
-        return this;
-    }
-
-    public String getComuneDiNascita() {
-        return comuneDiNascita;
-    }
-
-    public ClienteDto setComuneDiNascita(String comuneDiNascita) {
-        this.comuneDiNascita = comuneDiNascita;
         return this;
     }
 }

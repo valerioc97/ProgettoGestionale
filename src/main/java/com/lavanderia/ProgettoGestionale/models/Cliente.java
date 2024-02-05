@@ -21,8 +21,11 @@ public class Cliente {
     @Column(name = "COGNOME")
     private String cognome;
 
-    @Column(name = "COMUNE_DI_NASCITA")
-    private String comuneDiNascita;
+    @Column(name = "INDIRIZZO")
+    private String indirizzo;
+
+    @Column(name = "NUMERO_DI_TELEFONO")
+    private String numeroDiTelefono;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -50,15 +53,6 @@ public class Cliente {
         return this;
     }
 
-    public String getComuneDiNascita() {
-        return comuneDiNascita;
-    }
-
-    public Cliente setComuneDiNascita(String comuneDiNascita) {
-        this.comuneDiNascita = comuneDiNascita;
-        return this;
-    }
-
     public Integer getIdCliente() {
         return idCliente;
     }
@@ -79,6 +73,24 @@ public class Cliente {
 
     public Cliente setCapi(Set<Capi> capi) {
         this.capi = capi;
+        return this;
+    }
+
+    public String getIndirizzo() {
+        return indirizzo;
+    }
+
+    public Cliente setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
+        return this;
+    }
+
+    public String getNumeroDiTelefono() {
+        return numeroDiTelefono;
+    }
+
+    public Cliente setNumeroDiTelefono(String numeroDiTelefono) {
+        this.numeroDiTelefono = numeroDiTelefono;
         return this;
     }
 }

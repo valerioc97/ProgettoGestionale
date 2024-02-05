@@ -16,16 +16,11 @@ public class CostruzioneModelInput {
     }
 
     public Cliente dtoToModel(ClienteDto dto){
-        Capi capo = new Capi()
-                .setNomeCapo(dto.getNomeCapo())
-                .setDescrizione(dto.getDescrizione());
-        Set<Capi> capi = new HashSet<>();
-        capi.add(capo);
 
         return new Cliente()
                 .setNome(dto.getNome())
                 .setCognome(dto.getCognome())
-                .setComuneDiNascita(dto.getComuneDiNascita())
-                .setCapi(capi);
+                .setIndirizzo(dto.getIndirizzo())
+                .setNumeroDiTelefono(dto.getNumeroDiTelefono());
     }
 }
