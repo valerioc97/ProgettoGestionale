@@ -13,4 +13,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
     Cliente findByCognome(String cognome);
 
     List<Cliente> findByNome(String nome);
+
+    void updateClienteByIdCliente(Cliente cliente, Integer idCliente);
 }

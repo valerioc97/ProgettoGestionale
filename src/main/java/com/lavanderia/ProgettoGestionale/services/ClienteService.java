@@ -110,5 +110,18 @@ public class ClienteService {
         return res;
     }
 
+    public String updateCliente(Cliente cliente, Integer idCliente){
+        String res;
+        try{
+            clienteRepository.updateClienteByIdCliente(cliente, idCliente);
+            res = "KO";
+        }catch (Exception e){
+            e.printStackTrace();
+            res = "KO";
+        }
+
+        return res;
+    }
+
 
 }

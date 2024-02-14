@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/lavanderia")
+@CrossOrigin
 public class MainController {
 
     @Autowired
@@ -80,6 +81,15 @@ public class MainController {
 
         return ResponseEntity.ok(res);
 
+    }
+
+    @PutMapping("/cliente/{idCliente}")
+    public ResponseEntity<String> updateCliente(@RequestBody ClienteDto clienteDto, @PathVariable Integer idCliente){
+
+        Cliente cliente = new CostruzioneModelInput().dtoToModel(clienteDto);
+        String res = clienteService.updateCliente(cliente, idCliente);
+
+        return ResponseEntity.ok(res);
     }
 
 }
