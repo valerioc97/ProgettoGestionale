@@ -86,6 +86,8 @@ public class MainController {
     @PutMapping("/cliente/{idCliente}")
     public ResponseEntity<String> updateCliente(@RequestBody ClienteDto clienteDto, @PathVariable Integer idCliente){
 
+        System.out.println(clienteDto);
+        System.out.println(idCliente);
         Cliente cliente = new CostruzioneModelInput().dtoToModel(clienteDto);
         String res = clienteService.updateCliente(cliente, idCliente);
 

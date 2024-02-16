@@ -2,7 +2,10 @@ package com.lavanderia.ProgettoGestionale.interfaces;
 
 import com.lavanderia.ProgettoGestionale.models.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,5 +17,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     List<Cliente> findByNome(String nome);
 
-    void updateClienteByIdCliente(Cliente cliente, Integer idCliente);
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE lavanderia.cliente SET nome = ?, cognome = ?, indirizzo = ?, numero_di_telefono = ? WHERE id_cliente = ?;", nativeQuery = true)
+    void updateClienteByclienteEntityAndIdCliente(String nome, String cognome, String indirizzo, String numeroDiTelefono, Integer idCliente);
 }

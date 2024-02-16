@@ -113,7 +113,8 @@ public class ClienteService {
     public String updateCliente(Cliente cliente, Integer idCliente){
         String res;
         try{
-            clienteRepository.updateClienteByIdCliente(cliente, idCliente);
+            clienteRepository.updateClienteByclienteEntityAndIdCliente(cliente.getNome(), cliente.getCognome(),
+                    cliente.getIndirizzo(), cliente.getNumeroDiTelefono(), idCliente);
             res = "KO";
         }catch (Exception e){
             e.printStackTrace();
