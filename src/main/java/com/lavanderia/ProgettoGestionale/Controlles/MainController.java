@@ -7,6 +7,7 @@ import com.lavanderia.ProgettoGestionale.models.Capi;
 import com.lavanderia.ProgettoGestionale.models.Cliente;
 import com.lavanderia.ProgettoGestionale.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,7 +49,7 @@ public class MainController {
 
     }
 
-    @DeleteMapping("/cliente/{id}")
+    @DeleteMapping(value = "/cliente/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> deleteCliente(@PathVariable Integer id){
 
         String res = clienteService.deleteCliente(id);
