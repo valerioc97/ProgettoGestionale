@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.2</version>
+		<version>3.2.4</version>
 		<relativePath/>
 	</parent>
 	<groupId>com.lavanderia</groupId>
@@ -14,7 +14,7 @@
 	<name>Progetto Gestionale</name>
 	<description>Gestionale lavanderia</description>
 	<properties>
-		<java.version>8</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -48,5 +48,6 @@
 			</plugin>
 		</plugins>
 	</build>
+
 
 </project>
