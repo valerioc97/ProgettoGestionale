@@ -11,6 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.util.List;
 
 @RestController
@@ -93,6 +96,31 @@ public class MainController {
         String res = clienteService.updateCliente(cliente, idCliente);
 
         return ResponseEntity.ok(res);
+    }
+
+    @GetMapping("/print")
+    public ResponseEntity<String> stampaStringa(){
+        String contentToPrint = "Contenuto da stampare";
+        String messaggio;
+
+        PrinterJob job = PrinterJob.getPrinterJob();
+        job.setPrintable((graphics, pageFormat, pageIndex) -> {
+            if(pageIndex == 0){
+                graphics.drawString(contentToPrint, 100, 100);
+                return Printable.PAGE_EXISTS;
+            }else {
+                return Printable.NO_SUCH_PAGE;
+            }
+        });
+
+        try {
+            job.print();
+            messaggio = "Contenuto stampato";
+        } catch (PrinterException e) {
+            messaggio = "Contenuto non stampato";
+            throw new RuntimeException(e);
+        }
+        return ResponseEntity.ok(messaggio);
     }
 
 }
