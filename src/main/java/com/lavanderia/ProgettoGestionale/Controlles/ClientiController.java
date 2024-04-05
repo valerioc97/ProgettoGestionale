@@ -6,26 +6,21 @@ import com.lavanderia.ProgettoGestionale.dtos.ClienteDto;
 import com.lavanderia.ProgettoGestionale.models.Capi;
 import com.lavanderia.ProgettoGestionale.models.Cliente;
 import com.lavanderia.ProgettoGestionale.services.ClienteService;
-import com.lavanderia.ProgettoGestionale.services.PrinterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Printable;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
 import java.util.List;
 
 @RestController
 @RequestMapping("/lavanderia")
 @CrossOrigin
-public class MainController {
+public class ClientiController {
 
     @Autowired
     private ClienteService clienteService;
-    @Autowired
-    private PrinterService printerService;
+
 
     @GetMapping("/clienti")
     public ResponseEntity<List<Cliente>> getClienti(){
@@ -101,46 +96,6 @@ public class MainController {
         return ResponseEntity.ok(res);
     }
 
-    //Soluzione on-premise.
-    @GetMapping("/print")
-    public ResponseEntity<String> stampaStringa(){
-        String contentToPrint = "Contenuto da stampare";
-        String messaggio;
 
-        PrinterJob job = PrinterJob.getPrinterJob();
-        job.setPrintable((graphics, pageFormat, pageIndex) -> {
-            if(pageIndex == 0){
-                graphics.drawString(contentToPrint, 100, 100);
-                return Printable.PAGE_EXISTS;
-            }else {
-                return Printable.NO_SUCH_PAGE;
-            }
-        });
-
-        try {
-            job.print();
-            messaggio = "Contenuto stampato";
-        } catch (PrinterException e) {
-            messaggio = "Contenuto non stampato";
-            throw new RuntimeException(e);
-        }
-        return ResponseEntity.ok(messaggio);
-    }
-
-    //Soluzione cloud/remoto
-    @GetMapping("/print1")
-    public ResponseEntity<String> stampaStringa1(){
-        String contentToPrint = "Contenuto da stampare";
-        String messaggio;
-
-        try {
-            printerService.print(contentToPrint);
-            messaggio = "Contenuto stampato";
-        } catch (Exception e) {
-            messaggio = "Contenuto non stampato";
-            throw new RuntimeException(e);
-        }
-        return ResponseEntity.ok(messaggio);
-    }
 
 }
