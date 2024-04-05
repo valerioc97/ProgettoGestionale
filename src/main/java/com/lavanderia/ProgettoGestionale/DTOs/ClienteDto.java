@@ -1,4 +1,4 @@
-package com.lavanderia.ProgettoGestionale.dtos;
+package com.lavanderia.ProgettoGestionale.DTOs;
 
 public class ClienteDto {
 

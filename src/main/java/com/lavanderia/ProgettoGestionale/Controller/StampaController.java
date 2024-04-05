@@ -1,6 +1,6 @@
-package com.lavanderia.ProgettoGestionale.Controlles;
+package com.lavanderia.ProgettoGestionale.Controller;
 
-import com.lavanderia.ProgettoGestionale.services.PrinterService;
+import com.lavanderia.ProgettoGestionale.Services.PrinterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

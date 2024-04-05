@@ -1,4 +1,4 @@
-package com.lavanderia.ProgettoGestionale.services;
+package com.lavanderia.ProgettoGestionale.Services;
 
 import javax.print.Doc;
 import javax.print.DocFlavor;

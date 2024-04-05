@@ -1,12 +1,9 @@
 package com.lavanderia.ProgettoGestionale.Assembler;
 
-import com.lavanderia.ProgettoGestionale.dtos.CapoDto;
-import com.lavanderia.ProgettoGestionale.dtos.ClienteDto;
-import com.lavanderia.ProgettoGestionale.models.Capi;
-import com.lavanderia.ProgettoGestionale.models.Cliente;
-
-import java.util.HashSet;
-import java.util.Set;
+import com.lavanderia.ProgettoGestionale.DTOs.CapoDto;
+import com.lavanderia.ProgettoGestionale.DTOs.ClienteDto;
+import com.lavanderia.ProgettoGestionale.Models.Capi;
+import com.lavanderia.ProgettoGestionale.Models.Cliente;
 
 public class CostruzioneModelInput {
 

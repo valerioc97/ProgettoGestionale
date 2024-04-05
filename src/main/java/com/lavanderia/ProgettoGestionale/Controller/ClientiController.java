@@ -1,11 +1,11 @@
-package com.lavanderia.ProgettoGestionale.Controlles;
+package com.lavanderia.ProgettoGestionale.Controller;
 
 import com.lavanderia.ProgettoGestionale.Assembler.CostruzioneModelInput;
-import com.lavanderia.ProgettoGestionale.dtos.CapoDto;
-import com.lavanderia.ProgettoGestionale.dtos.ClienteDto;
-import com.lavanderia.ProgettoGestionale.models.Capi;
-import com.lavanderia.ProgettoGestionale.models.Cliente;
-import com.lavanderia.ProgettoGestionale.services.ClienteService;
+import com.lavanderia.ProgettoGestionale.DTOs.CapoDto;
+import com.lavanderia.ProgettoGestionale.DTOs.ClienteDto;
+import com.lavanderia.ProgettoGestionale.Models.Capi;
+import com.lavanderia.ProgettoGestionale.Models.Cliente;
+import com.lavanderia.ProgettoGestionale.Services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

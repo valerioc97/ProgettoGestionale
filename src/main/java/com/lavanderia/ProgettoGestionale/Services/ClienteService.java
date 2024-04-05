@@ -1,8 +1,8 @@
-package com.lavanderia.ProgettoGestionale.services;
+package com.lavanderia.ProgettoGestionale.Services;
 
-import com.lavanderia.ProgettoGestionale.interfaces.ClienteRepository;
-import com.lavanderia.ProgettoGestionale.models.Capi;
-import com.lavanderia.ProgettoGestionale.models.Cliente;
+import com.lavanderia.ProgettoGestionale.Interfacce.ClienteRepository;
+import com.lavanderia.ProgettoGestionale.Models.Capi;
+import com.lavanderia.ProgettoGestionale.Models.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

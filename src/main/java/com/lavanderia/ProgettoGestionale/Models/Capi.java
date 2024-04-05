@@ -1,7 +1,6 @@
-package com.lavanderia.ProgettoGestionale.models;
+package com.lavanderia.ProgettoGestionale.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mysql.cj.xdevapi.Client;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
