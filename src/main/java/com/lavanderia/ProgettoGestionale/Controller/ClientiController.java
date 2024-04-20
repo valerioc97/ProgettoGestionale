@@ -75,11 +75,11 @@ public class ClientiController {
     }
 
     @PostMapping("/cliente/capo/{idCliente}")
-    public ResponseEntity<String> inserimentoCapo(@RequestBody CapoDto capoDto, @PathVariable Integer idCliente){
+    public ResponseEntity<String> inserimentoCapo(@RequestBody List<CapoDto> capoDto, @PathVariable Integer idCliente){
 
-        Capi capo = new CostruzioneModelInput().dtoToModel(capoDto);
+        List<Capi> capi = new CostruzioneModelInput().dtoToModel(capoDto);
 
-        String res = clienteService.inserimentoCapo(capo, idCliente);
+        String res = clienteService.inserimentoCapo(capi, idCliente);
 
         return ResponseEntity.ok(res);
 

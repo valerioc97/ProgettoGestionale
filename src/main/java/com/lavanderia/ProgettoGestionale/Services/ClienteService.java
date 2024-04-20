@@ -92,14 +92,16 @@ public class ClienteService {
         return res;
     }
 
-    public String inserimentoCapo(Capi capo, Integer idCliente) {
+    public String inserimentoCapo(List<Capi> capi, Integer idCliente) {
         String res;
         try{
+            for(Capi capo : capi){
             Optional<Cliente> oc = clienteRepository.findById(idCliente);
             if(oc.isPresent()){
                 Cliente cliente = oc.get();
                 cliente.getCapi().add(capo);
                 clienteRepository.saveAndFlush(cliente);
+            }
             }
 
             res = "OK";
