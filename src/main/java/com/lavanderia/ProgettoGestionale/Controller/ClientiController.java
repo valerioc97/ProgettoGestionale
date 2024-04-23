@@ -15,21 +15,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/lavanderia")
-@CrossOrigin
 public class ClientiController {
 
     @Autowired
     private ClienteService clienteService;
 
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/clienti")
     public ResponseEntity<List<Cliente>> getClienti(){
 
         return ResponseEntity.ok(clienteService.getAllClienti());
     }
-
-    @CrossOrigin(origins = "*")
+    
     @GetMapping("/cliente")
     public ResponseEntity<List<Cliente>> getCliente(@RequestParam(required = false) Integer idCliente,
                                               @RequestParam(required = false) String nome,
@@ -39,7 +36,6 @@ public class ClientiController {
         return ResponseEntity.ok(clienteService.ricercaEstesa(idCliente, nome, cognome));
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping("/cliente")
     public ResponseEntity<String> inserisciCliente(@RequestBody ClienteDto clienteDto){
 
@@ -53,7 +49,6 @@ public class ClientiController {
 
     }
 
-    @CrossOrigin(origins = "*")
     @DeleteMapping(value = "/cliente/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> deleteCliente(@PathVariable Integer id){
 
@@ -63,7 +58,6 @@ public class ClientiController {
 
     }
 
-    @CrossOrigin(origins = "*")
     @DeleteMapping("/clienti")
     public ResponseEntity<String> deleteAllClienti(){
 
@@ -72,7 +66,6 @@ public class ClientiController {
         return ResponseEntity.ok(res);
     }
 
-    @CrossOrigin(origins = "*")
     @DeleteMapping("/cliente/capo/{idCliente}/{idCapo}")
     public ResponseEntity<String> deleteCapo(@PathVariable Integer idCapo, @PathVariable Integer idCliente){
         String res = clienteService.deleteCapo(idCapo, idCliente);
@@ -80,7 +73,6 @@ public class ClientiController {
         return ResponseEntity.ok(res);
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping("/cliente/capo/{idCliente}")
     public ResponseEntity<String> inserimentoCapo(@RequestBody List<CapoDto> capoDto, @PathVariable Integer idCliente){
 
@@ -92,7 +84,6 @@ public class ClientiController {
 
     }
 
-    @CrossOrigin(origins = "*")
     @PutMapping("/cliente/{idCliente}")
     public ResponseEntity<String> updateCliente(@RequestBody ClienteDto clienteDto, @PathVariable Integer idCliente){
 
@@ -103,7 +94,5 @@ public class ClientiController {
 
         return ResponseEntity.ok(res);
     }
-
-
 
 }
