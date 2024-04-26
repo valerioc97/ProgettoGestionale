@@ -36,7 +36,7 @@ public class ClientiController {
         return ResponseEntity.ok(clienteService.ricercaEstesa(idCliente, nome, cognome));
     }
 
-    @PostMapping("/cliente")
+    @PostMapping(value = "/cliente", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> inserisciCliente(@RequestBody ClienteDto clienteDto){
 
         CostruzioneModelInput cmi = new CostruzioneModelInput();
