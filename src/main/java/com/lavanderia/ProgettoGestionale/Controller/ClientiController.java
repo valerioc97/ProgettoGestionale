@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/lavanderia")
+@CrossOrigin(origins = "*")
 public class ClientiController {
 
     @Autowired
