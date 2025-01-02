@@ -22,6 +22,13 @@ pipeline {
             }
         }
 
+        stage('Make mvnw Executable') {
+                    steps {
+                        // Aggiungi il permesso di esecuzione sul file mvnw
+                        sh 'chmod +x mvnw'
+                    }
+                }
+
         stage('Build Project') {
             steps {
                 sh './mvnw clean package -DskipTests' // Compila il progetto con Maven
