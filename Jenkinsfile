@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'tuo-dockerhub-username/tuo-progetto' // Nome immagine Docker
+        DOCKER_IMAGE = 'lavanderia' // Nome immagine Docker
         DOCKER_TAG = 'latest' // Tag dell'immagine Docker
     }
 
@@ -18,7 +18,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git branch: 'env/svil', url: 'https://github.com/tuo-repository.git'
+                git branch: 'env/svil', url: 'https://github.com/valerioc97/ProgettoGestionale.git'
             }
         }
 
