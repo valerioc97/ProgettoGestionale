@@ -53,7 +53,7 @@ pipeline {
         stage('Cleanin up') {
             steps {
                 echo 'Clean containers...'
-                bat "docker ps -a -q -f name=${JAVA_CONTAINER_NAME} | foreach { docker rm -f $_ }"
+                bat "docker ps -a -q -f name=${JAVA_CONTAINER_NAME} | foreach { docker rm -f ${JAVA_CONTAINER_NAME}}"
                   }
                 }
 
