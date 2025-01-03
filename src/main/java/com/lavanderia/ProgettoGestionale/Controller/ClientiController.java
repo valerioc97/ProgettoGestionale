@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/lavanderia")
@@ -24,6 +25,9 @@ public class ClientiController {
 
     @GetMapping("/clienti")
     public ResponseEntity<List<Cliente>> getClienti(){
+
+
+        System.out.println("Mi trovo in clienti");
 
         return ResponseEntity.ok(clienteService.getAllClienti());
     }
