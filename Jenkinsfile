@@ -59,7 +59,7 @@ pipeline {
          stage('Run Microservice') {
              steps {
                  echo 'Running the microservice container...'
-                 bat "docker run -d --name java-microservice -p 8080:8080 ${DOCKER_IMAGE}:${DOCKER_TAG}" // Esegui il microservizio
+                 bat "docker run --network lavanderia-network -d --name java-microservice -p 9090:8080 ${DOCKER_IMAGE}:${DOCKER_TAG}" // Esegui il microservizio
                    }
               }
 
