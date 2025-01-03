@@ -50,7 +50,7 @@ pipeline {
         }
 
         stage('Pull docker image'){
-            stage{
+            steps{
                 docker run -d lavanderia-lavanderia noahwoods/gestionale-repo:latest
             }
         }
