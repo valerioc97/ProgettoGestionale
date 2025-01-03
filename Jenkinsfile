@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'gestionale-repo' // Nome immagine Docker
+        DOCKER_IMAGE = 'noahwoods/gestionale-repo' // Nome immagine Docker
         DOCKER_TAG = 'latest' // Tag dell'immagine Docker
     }
 
