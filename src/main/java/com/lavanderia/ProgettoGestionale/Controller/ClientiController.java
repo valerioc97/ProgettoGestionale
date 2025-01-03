@@ -27,6 +27,7 @@ public class ClientiController {
     public ResponseEntity<List<Cliente>> getClienti(){
 
 
+        System.out.println("CLIENTI");
         return ResponseEntity.ok(clienteService.getAllClienti());
     }
     
