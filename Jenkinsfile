@@ -56,24 +56,18 @@ pipeline {
                         script {
                             // Esegui il pull dell'immagine del microservizio Java
                             sh "docker pull $DOCKER_REPO/$DOCKER_IMAGE:$DOCKER_TAG"
-
-                            // Esegui il pull dell'immagine del database MySQL
-                            sh "docker pull $MYSQL_IMAGE"
                         }
                     }
                 }
 
-                stage('Run Docker Containers') {
-                    steps {
-                        script {
-                            // Esegui il container del database MySQL
-                            sh "docker run --name mysql-db -e MYSQL_ROOT_PASSWORD=example -e MYSQL_DATABASE=yourdb -d -p 3306:3306 $MYSQL_IMAGE"
-
-                            // Esegui il microservizio Java
-                            sh "docker run --name java-microservice -d -p 8080:8080 --link mysql-db:db $DOCKER_REPO/$DOCKER_IMAGE:$DOCKER_TAG"
-                        }
-                    }
-                }
+                       stage('Run Java Microservice Container') {
+                           steps {
+                               script {
+                                   // Avvia il container del microservizio Java
+                                   sh "docker run --name lavanderia-lavanderia -d -p 8080:8080 $DOCKER_REPO/$DOCKER_IMAGE:$DOCKER_TAG"
+                               }
+                           }
+                       }
 
     }
 
