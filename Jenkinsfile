@@ -49,6 +49,20 @@ pipeline {
             }
         }
 
+         stage('Pull Docker Image') {
+             steps {
+                 echo 'Pulling Docker image for Java microservice...'
+                 bat "docker pull ${DOCKER_IMAGE}:${DOCKER_TAG}" // Pull dell'immagine del microservizio Java
+                    }
+              }
+
+         stage('Run Microservice') {
+             steps {
+                 echo 'Running the microservice container...'
+                 bat "docker run -d --name java-microservice -p 8080:8080 ${DOCKER_IMAGE}:${DOCKER_TAG}" // Esegui il microservizio
+                   }
+              }
+
     }
 
     post {
