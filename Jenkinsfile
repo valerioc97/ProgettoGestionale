@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'lavanderia' // Nome immagine Docker
+        DOCKER_IMAGE = 'lavanderia-gestionale-image' // Nome immagine Docker
         DOCKER_TAG = 'latest' // Tag dell'immagine Docker
     }
 
