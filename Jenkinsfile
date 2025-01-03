@@ -2,10 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_REPO = 'estionale-repo'
         DOCKER_IMAGE = 'noahwoods/gestionale-repo' // Nome immagine Docker
         DOCKER_TAG = 'latest' // Tag dell'immagine Docker
-
     }
 
     stages {
@@ -50,24 +48,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Pull Docker Images') {
-                    steps {
-                        script {
-                            // Esegui il pull dell'immagine del microservizio Java
-                            sh "docker pull $DOCKER_REPO/$DOCKER_IMAGE:$DOCKER_TAG"
-                        }
-                    }
-                }
-
-                       stage('Run Java Microservice Container') {
-                           steps {
-                               script {
-                                   // Avvia il container del microservizio Java
-                                   sh "docker run --name lavanderia-lavanderia -d -p 8080:8080 $DOCKER_REPO/$DOCKER_IMAGE:$DOCKER_TAG"
-                               }
-                           }
-                       }
 
     }
 
