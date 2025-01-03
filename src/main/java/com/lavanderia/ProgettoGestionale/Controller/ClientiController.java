@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -27,9 +28,8 @@ public class ClientiController {
     public ResponseEntity<List<Cliente>> getClienti(){
 
 
-        System.out.println("Mi trovo in clienti");
-
-        return ResponseEntity.ok(clienteService.getAllClienti());
+        //return ResponseEntity.ok(clienteService.getAllClienti());
+        return ResponseEntity.ok(new ArrayList<>());
     }
     
     @GetMapping("/cliente")
