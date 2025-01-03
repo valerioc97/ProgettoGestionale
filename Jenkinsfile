@@ -48,6 +48,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Pull docker image'){
+            stage{
+                docker run -d lavanderia-lavanderia noahwoods/gestionale-repo:latest
+            }
+        }
+
     }
 
     post {
