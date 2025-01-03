@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'noahwoods/gestionale-repo' // Nome immagine Docker
         DOCKER_TAG = 'latest' // Tag dell'immagine Docker
+        JAVA_CONTAINER_NAME = 'java-microservice'
     }
 
     stages {
@@ -48,6 +49,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Cleanin up') {
+            steps {
+                echo 'Clean containers...'
+                bat "docker ps -a -q -f name=${JAVA_CONTAINER_NAME} | foreach { docker rm -f $_ }"
+                  }
+                }
 
          stage('Pull Docker Image') {
              steps {
