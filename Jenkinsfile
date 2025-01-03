@@ -38,6 +38,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
+                // Copia il JAR nel container Docker
                 bat "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ." // Costruisce l'immagine Docker su Windows
             }
         }
@@ -50,26 +51,29 @@ pipeline {
             }
         }
 
+        // Step per rimuovere eventuali container esistenti con il nome specificato
         stage('Cleanin up') {
             steps {
                 echo 'Clean containers...'
-                bat "docker rm -f ${JAVA_CONTAINER_NAME}"
-                  }
-                }
+                bat "docker rm -f ${JAVA_CONTAINER_NAME}" // Rimuove il container esistente se presente
+            }
+        }
 
-         stage('Pull Docker Image') {
-             steps {
-                 echo 'Pulling Docker image for Java microservice...'
-                 bat "docker pull ${DOCKER_IMAGE}:${DOCKER_TAG}" // Pull dell'immagine del microservizio Java
-                    }
-              }
+        // Step per il pull dell'immagine dal Docker Hub
+        stage('Pull Docker Image') {
+            steps {
+                echo 'Pulling Docker image for Java microservice...'
+                bat "docker pull ${DOCKER_IMAGE}:${DOCKER_TAG}" // Pull dell'immagine dal Docker Hub
+            }
+        }
 
-         stage('Run Microservice') {
-             steps {
-                 echo 'Running the microservice container...'
-                 bat "docker run --network lavanderia-network -d --name java-microservice -p 9090:8080 ${DOCKER_IMAGE}:${DOCKER_TAG}" // Esegui il microservizio
-                   }
-              }
+        // Step per avviare il microservizio in un container Docker
+        stage('Run Microservice') {
+            steps {
+                echo 'Running the microservice container...'
+                bat "docker run --network lavanderia-network -d --name ${JAVA_CONTAINER_NAME} -p 9090:8080 ${DOCKER_IMAGE}:${DOCKER_TAG}" // Esegui il microservizio
+            }
+        }
 
     }
 
