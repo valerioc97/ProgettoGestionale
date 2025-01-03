@@ -2,12 +2,20 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HOST = 'tcp://host.docker.internal:2375'
-        DOCKER_IMAGE = 'lavanderia'
-        DOCKER_TAG = 'latest'
+        DOCKER_IMAGE = 'lavanderia' // Nome immagine Docker
+        DOCKER_TAG = 'latest' // Tag dell'immagine Docker
     }
 
     stages {
+        stage('Check Branch') {
+            when {
+                branch 'env/svil' // Esegui solo se il branch è env/svil
+            }
+            steps {
+                echo 'Branch corretto: env/svil'
+            }
+        }
+
         stage('Clone Repository') {
             steps {
                 git branch: 'env/svil', url: 'https://github.com/valerioc97/ProgettoGestionale.git'
@@ -15,28 +23,28 @@ pipeline {
         }
 
         stage('Make mvnw Executable') {
-                    steps {
-                        // Aggiungi il permesso di esecuzione sul file mvnw
-                        sh 'chmod +x mvnw'
-                    }
-                }
+            steps {
+                // Cambia il permesso di esecuzione su Windows
+                bat 'icacls mvnw /grant Everyone:F' // Cambia i permessi per l'esecuzione del file mvnw su Windows
+            }
+        }
 
         stage('Build Project') {
             steps {
-                sh './mvnw clean package -DskipTests'
+                bat './mvnw clean package -DskipTests' // Compila il progetto con Maven su Windows
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+                bat "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ." // Costruisce l'immagine Docker su Windows
             }
         }
 
         stage('Push Docker Image') {
             steps {
                 withDockerRegistry([credentialsId: 'docker-credentials', url: 'https://index.docker.io/v1/']) {
-                    sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    bat "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}" // Push dell'immagine Docker su Windows
                 }
             }
         }
