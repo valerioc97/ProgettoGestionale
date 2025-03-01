@@ -3,7 +3,6 @@ package com.lavanderia.ProgettoGestionale.Controller;
 import com.lavanderia.ProgettoGestionale.Assembler.CostruzioneModelInput;
 import com.lavanderia.ProgettoGestionale.DTOs.CapoDto;
 import com.lavanderia.ProgettoGestionale.DTOs.ClienteDto;
-import com.lavanderia.ProgettoGestionale.Models.Capi;
 import com.lavanderia.ProgettoGestionale.Models.Cliente;
 import com.lavanderia.ProgettoGestionale.Services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
-@RequestMapping("/lavanderia")
+@RequestMapping("/lavanderia/anagrafica")
 @CrossOrigin(origins = "*")
 public class ClientiController {
 
@@ -26,9 +24,13 @@ public class ClientiController {
     @GetMapping("/clienti")
     public ResponseEntity<List<Cliente>> getClienti(){
 
-
-        System.out.println("CLIENTI");
         return ResponseEntity.ok(clienteService.getAllClienti());
+    }
+
+    @GetMapping("/clientiRestTemplate")
+    public ResponseEntity<String> getClientiRestTemplate(){
+
+        return ResponseEntity.ok("Ciao Mondo!");
     }
     
     @GetMapping("/cliente")
@@ -70,6 +72,7 @@ public class ClientiController {
         return ResponseEntity.ok(res);
     }
 
+    /*
     @DeleteMapping("/cliente/capo/{idCliente}/{idCapo}")
     public ResponseEntity<String> deleteCapo(@PathVariable Integer idCapo, @PathVariable Integer idCliente){
         String res = clienteService.deleteCapo(idCapo, idCliente);
@@ -77,6 +80,9 @@ public class ClientiController {
         return ResponseEntity.ok(res);
     }
 
+     */
+
+    /*
     @PostMapping("/cliente/capo/{idCliente}")
     public ResponseEntity<String> inserimentoCapo(@RequestBody List<CapoDto> capoDto, @PathVariable Integer idCliente){
 
@@ -87,6 +93,8 @@ public class ClientiController {
         return ResponseEntity.ok(res);
 
     }
+
+     */
 
     @PutMapping("/cliente/{idCliente}")
     public ResponseEntity<String> updateCliente(@RequestBody ClienteDto clienteDto, @PathVariable Integer idCliente){

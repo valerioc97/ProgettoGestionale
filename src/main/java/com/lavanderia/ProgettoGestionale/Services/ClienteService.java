@@ -1,7 +1,6 @@
 package com.lavanderia.ProgettoGestionale.Services;
 
 import com.lavanderia.ProgettoGestionale.Interfacce.ClienteRepository;
-import com.lavanderia.ProgettoGestionale.Models.Capi;
 import com.lavanderia.ProgettoGestionale.Models.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,6 +73,7 @@ public class ClienteService {
         return res;
     }
 
+    /*
     public String deleteCapo(Integer idCapo, Integer IdCliente) {
         String res;
         try{
@@ -92,6 +92,9 @@ public class ClienteService {
         return res;
     }
 
+     */
+
+    /*
     public String inserimentoCapo(List<Capi> capi, Integer idCliente) {
         String res;
         try{
@@ -111,6 +114,8 @@ public class ClienteService {
         }
         return res;
     }
+
+     */
 
     public String updateCliente(Cliente cliente, Integer idCliente){
         String res;

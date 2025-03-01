@@ -26,14 +26,6 @@ public class Cliente {
     @Column(name = "NUMERO_DI_TELEFONO")
     private String numeroDiTelefono;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "cliente_capo",
-            joinColumns = @JoinColumn(name = "idCliente"),
-            inverseJoinColumns = @JoinColumn(name = "idCapo"))
-    private Set<Capi> capi = new HashSet<>();
-
-
     public String getNome() {
         return nome;
     }
@@ -63,15 +55,6 @@ public class Cliente {
 
     public Cliente setIdCliente(int idCliente) {
         this.idCliente = idCliente;
-        return this;
-    }
-
-    public Set<Capi> getCapi() {
-        return capi;
-    }
-
-    public Cliente setCapi(Set<Capi> capi) {
-        this.capi = capi;
         return this;
     }
 
