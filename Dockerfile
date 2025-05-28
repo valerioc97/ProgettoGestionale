@@ -1,14 +1,14 @@
-# Usa l'immagine ufficiale di OpenJDK 17 come base
+# Usa immagine base OpenJDK 17 slim
 FROM openjdk:17-jdk-slim
 
-# Imposta la directory di lavoro nel container
-WORKDIR C://Users//Ulixe//Documents//dockerGest//ProgettoGestionale
+# Crea e imposta la directory di lavoro
+WORKDIR /app
 
-# Copia il JAR costruito nel container
-COPY target/ProgettoGestionale-0.0.1-SNAPSHOT.jar progettoGestionale.jar
+# Copia il jar dentro il container
+COPY target/ProgettoGestionale-0.0.1-SNAPSHOT.jar app.jar
 
-# Espone la porta 8080
+# Espone la porta (Spring Boot di solito gira su 8080)
 EXPOSE 8080
 
-# Comando per eseguire l'applicazione Java
-ENTRYPOINT ["java", "-jar", "progettoGestionale.jar"]
+# Comando di avvio
+ENTRYPOINT ["java", "-jar", "app.jar"]

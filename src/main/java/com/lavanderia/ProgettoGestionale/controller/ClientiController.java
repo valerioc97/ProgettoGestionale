@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/lavanderia/anagrafica")
+@RequestMapping("/lavanderia")
 @CrossOrigin(origins = "*")
 public class ClientiController {
 
@@ -20,19 +20,19 @@ public class ClientiController {
     private ClienteService clienteService;
 
 
-    @GetMapping("/clienti")
+    @GetMapping("anagrafica/clienti")
     public ResponseEntity<List<Cliente>> getClienti(){
 
         return ResponseEntity.ok(clienteService.getAllClienti());
     }
 
-    @GetMapping("/clientiRestTemplate")
+    @GetMapping("anagrafica/clientiRestTemplate")
     public ResponseEntity<String> getClientiRestTemplate(){
 
         return ResponseEntity.ok("Ciao Mondo!");
     }
     
-    @GetMapping("/cliente")
+    @GetMapping("anagrafica/cliente")
     public ResponseEntity<List<Cliente>> getCliente(@RequestParam(required = false) Integer idCliente,
                                               @RequestParam(required = false) String nome,
                                               @RequestParam(required = false) String cognome){
@@ -41,7 +41,7 @@ public class ClientiController {
         return ResponseEntity.ok(clienteService.ricercaEstesa(idCliente, nome, cognome));
     }
 
-    @PostMapping(value = "/cliente", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "anagrafica/cliente", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> inserisciCliente(@RequestBody ClienteDto clienteDto){
 
         CostruzioneModelInput cmi = new CostruzioneModelInput();
@@ -54,7 +54,7 @@ public class ClientiController {
 
     }
 
-    @DeleteMapping(value = "/cliente/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
+    @DeleteMapping(value = "anagrafica/cliente/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> deleteCliente(@PathVariable Integer id){
 
         String res = clienteService.deleteCliente(id);
@@ -63,7 +63,7 @@ public class ClientiController {
 
     }
 
-    @DeleteMapping("/clienti")
+    @DeleteMapping("anagrafica/clienti")
     public ResponseEntity<String> deleteAllClienti(){
 
         String res = clienteService.deleteClienti();
@@ -95,7 +95,7 @@ public class ClientiController {
 
      */
 
-    @PutMapping("/cliente/{idCliente}")
+    @PutMapping("anagrafica/cliente/{idCliente}")
     public ResponseEntity<String> updateCliente(@RequestBody ClienteDto clienteDto, @PathVariable Integer idCliente){
 
         System.out.println(clienteDto);
