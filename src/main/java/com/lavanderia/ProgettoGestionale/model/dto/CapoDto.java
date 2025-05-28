@@ -1,4 +1,4 @@
-package com.lavanderia.ProgettoGestionale.DTOs;
+package com.lavanderia.ProgettoGestionale.model.dto;
 
 public class CapoDto {
 
