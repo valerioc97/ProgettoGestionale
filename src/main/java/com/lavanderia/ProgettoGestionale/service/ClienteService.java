@@ -73,50 +73,6 @@ public class ClienteService {
         return res;
     }
 
-    /*
-    public String deleteCapo(Integer idCapo, Integer IdCliente) {
-        String res;
-        try{
-            Optional<Cliente> oc = clienteRepository.findById(IdCliente);
-            if(oc.isPresent()){
-                Cliente cliente = oc.get();
-                cliente.getCapi().removeIf(capo -> capo.getIdCapo().equals(idCapo));
-                clienteRepository.save(cliente);
-            }
-
-            res = "OK";
-        }catch (Exception e){
-            e.printStackTrace();
-            res = "KO";
-        }
-        return res;
-    }
-
-     */
-
-    /*
-    public String inserimentoCapo(List<Capi> capi, Integer idCliente) {
-        String res;
-        try{
-            for(Capi capo : capi){
-            Optional<Cliente> oc = clienteRepository.findById(idCliente);
-            if(oc.isPresent()){
-                Cliente cliente = oc.get();
-                cliente.getCapi().add(capo);
-                clienteRepository.saveAndFlush(cliente);
-            }
-            }
-
-            res = "OK";
-        }catch (Exception e){
-            e.printStackTrace();
-            res = "KO";
-        }
-        return res;
-    }
-
-     */
-
     public String updateCliente(Cliente cliente, Integer idCliente){
         String res;
         try{
