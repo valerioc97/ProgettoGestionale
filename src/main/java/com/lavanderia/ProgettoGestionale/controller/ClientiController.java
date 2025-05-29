@@ -25,12 +25,6 @@ public class ClientiController {
 
         return ResponseEntity.ok(clienteService.getAllClienti());
     }
-
-    @GetMapping("anagrafica/clientiRestTemplate")
-    public ResponseEntity<String> getClientiRestTemplate(){
-
-        return ResponseEntity.ok("Ciao Mondo!");
-    }
     
     @GetMapping("anagrafica/cliente")
     public ResponseEntity<List<Cliente>> getCliente(@RequestParam(required = false) Integer idCliente,
@@ -70,30 +64,6 @@ public class ClientiController {
 
         return ResponseEntity.ok(res);
     }
-
-    /*
-    @DeleteMapping("/cliente/capo/{idCliente}/{idCapo}")
-    public ResponseEntity<String> deleteCapo(@PathVariable Integer idCapo, @PathVariable Integer idCliente){
-        String res = clienteService.deleteCapo(idCapo, idCliente);
-
-        return ResponseEntity.ok(res);
-    }
-
-     */
-
-    /*
-    @PostMapping("/cliente/capo/{idCliente}")
-    public ResponseEntity<String> inserimentoCapo(@RequestBody List<CapoDto> capoDto, @PathVariable Integer idCliente){
-
-        List<Capi> capi = new CostruzioneModelInput().dtoToModel(capoDto);
-
-        String res = clienteService.inserimentoCapo(capi, idCliente);
-
-        return ResponseEntity.ok(res);
-
-    }
-
-     */
 
     @PutMapping("anagrafica/cliente/{idCliente}")
     public ResponseEntity<String> updateCliente(@RequestBody ClienteDto clienteDto, @PathVariable Integer idCliente){
