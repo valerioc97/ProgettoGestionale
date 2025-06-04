@@ -25,6 +25,7 @@ public class ClientiController {
 
         return ResponseEntity.ok(clienteService.getAllClienti());
     }
+
     
     @GetMapping("anagrafica/cliente")
     public ResponseEntity<List<Cliente>> getCliente(@RequestParam(required = false) Integer idCliente,
