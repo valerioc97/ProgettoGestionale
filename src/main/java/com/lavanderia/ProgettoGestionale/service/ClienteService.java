@@ -1,7 +1,11 @@
 package com.lavanderia.ProgettoGestionale.service;
 
+import com.lavanderia.ProgettoGestionale.model.dto.ClienteDto;
+import com.lavanderia.ProgettoGestionale.model.mapper.ClienteMapper;
 import com.lavanderia.ProgettoGestionale.repository.ClienteRepository;
-import com.lavanderia.ProgettoGestionale.model.Cliente;
+import com.lavanderia.ProgettoGestionale.model.entity.Cliente;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +18,11 @@ public class ClienteService {
 
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private ClienteMapper clienteMapper;
+
+    private static final Logger logger = LoggerFactory.getLogger(ClienteService.class);
 
     public List<Cliente> getAllClienti(){
         return clienteRepository.findAll();
@@ -35,56 +44,39 @@ public class ClienteService {
 
     }
 
-    public String postCliente(Cliente cliente){
-        String res;
-        try{
-            clienteRepository.save(cliente);
-            res = "OK";
-        }catch (Exception e){
-            e.printStackTrace();
-            res="KO";
-        }
+    public void postCliente(ClienteDto clienteDto){
 
-        return res;
+        try{
+            clienteRepository.save(clienteMapper.clienteDtoIntoClienteEntity(clienteDto));
+        }catch (Exception e){
+            logger.error("Errore durante il salvataggio del seguente cliente: {}, messaggio: {}", clienteDto, e.getMessage());
+        }
     }
 
-    public String deleteCliente(Integer id){
-        String res;
+    public void deleteCliente(Integer id){
         try{
             clienteRepository.deleteById(id);
-            res="OK";
         }catch (Exception e){
-            e.printStackTrace();
-            res="KO";
+            logger.error("Errore durante l'eliminazione del cliente numero: {}, messaggio: {}", id, e.getMessage());
         }
-        return res;
     }
 
     public String deleteClienti(){
-        String res;
 
         try{
             clienteRepository.deleteAll();
-            res = "OK";
         }catch (Exception e){
-            e.printStackTrace();
-            res = "KO";
+            logger.error("Errore durante l'eliminazione di tutti i clienti. Messaggio: {}", e.getMessage());
         }
-        return res;
     }
 
-    public String updateCliente(Cliente cliente, Integer idCliente){
-        String res;
+    public void updateCliente(ClienteDto cliente, Integer idCliente){
         try{
             clienteRepository.updateClienteByclienteEntityAndIdCliente(cliente.getNome(), cliente.getCognome(),
                     cliente.getIndirizzo(), cliente.getNumeroDiTelefono(), idCliente);
-            res = "KO";
         }catch (Exception e){
-            e.printStackTrace();
-            res = "KO";
+            logger.error("Errore durante l'aggiornamento del id cliente {} {}", idCliente, cliente);
         }
-
-        return res;
     }
 
 

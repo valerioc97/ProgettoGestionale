@@ -1,6 +1,6 @@
 package com.lavanderia.ProgettoGestionale.repository;
 
-import com.lavanderia.ProgettoGestionale.model.Cliente;
+import com.lavanderia.ProgettoGestionale.model.entity.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

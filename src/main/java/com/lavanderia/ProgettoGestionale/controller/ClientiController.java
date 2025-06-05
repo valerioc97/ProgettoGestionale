@@ -1,8 +1,7 @@
 package com.lavanderia.ProgettoGestionale.controller;
 
-import com.lavanderia.ProgettoGestionale.assembler.CostruzioneModelInput;
 import com.lavanderia.ProgettoGestionale.model.dto.ClienteDto;
-import com.lavanderia.ProgettoGestionale.model.Cliente;
+import com.lavanderia.ProgettoGestionale.model.entity.Cliente;
 import com.lavanderia.ProgettoGestionale.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,60 +20,44 @@ public class ClientiController {
 
 
     @GetMapping("anagrafica/clienti")
-    public ResponseEntity<List<Cliente>> getClienti(){
+    public ResponseEntity<List<Cliente>> getClienti() {
 
         return ResponseEntity.ok(clienteService.getAllClienti());
     }
 
-    
+
     @GetMapping("anagrafica/cliente")
     public ResponseEntity<List<Cliente>> getCliente(@RequestParam(required = false) Integer idCliente,
-                                              @RequestParam(required = false) String nome,
-                                              @RequestParam(required = false) String cognome){
+                                                    @RequestParam(required = false) String nome,
+                                                    @RequestParam(required = false) String cognome) {
 
 
         return ResponseEntity.ok(clienteService.ricercaEstesa(idCliente, nome, cognome));
     }
 
     @PostMapping(value = "anagrafica/cliente", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> inserisciCliente(@RequestBody ClienteDto clienteDto){
-
-        CostruzioneModelInput cmi = new CostruzioneModelInput();
-
-        Cliente cliente = cmi.dtoToModel(clienteDto);
-
-        String res = clienteService.postCliente(cliente);
-
-        return ResponseEntity.ok(res);
+    public void inserisciCliente(@RequestBody ClienteDto clienteDto) {
+        clienteService.postCliente(clienteDto);
 
     }
 
     @DeleteMapping(value = "anagrafica/cliente/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> deleteCliente(@PathVariable Integer id){
+    public void deleteCliente(@PathVariable Integer id) {
 
-        String res = clienteService.deleteCliente(id);
-
-        return ResponseEntity.ok(res);
+        clienteService.deleteCliente(id);
 
     }
 
     @DeleteMapping("anagrafica/clienti")
-    public ResponseEntity<String> deleteAllClienti(){
+    public ResponseEntity<String> deleteAllClienti() {
 
-        String res = clienteService.deleteClienti();
-
-        return ResponseEntity.ok(res);
+        return ResponseEntity.ok(clienteService.deleteClienti());
     }
 
     @PutMapping("anagrafica/cliente/{idCliente}")
-    public ResponseEntity<String> updateCliente(@RequestBody ClienteDto clienteDto, @PathVariable Integer idCliente){
+    public void updateCliente(@RequestBody ClienteDto clienteDto, @PathVariable Integer idCliente) {
 
-        System.out.println(clienteDto);
-        System.out.println(idCliente);
-        Cliente cliente = new CostruzioneModelInput().dtoToModel(clienteDto);
-        String res = clienteService.updateCliente(cliente, idCliente);
-
-        return ResponseEntity.ok(res);
+        clienteService.updateCliente(clienteDto, idCliente);
     }
 
 }
