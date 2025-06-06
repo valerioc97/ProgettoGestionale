@@ -61,7 +61,7 @@ public class ClienteService {
         }
     }
 
-    public String deleteClienti(){
+    public void deleteClienti(){
 
         try{
             clienteRepository.deleteAll();

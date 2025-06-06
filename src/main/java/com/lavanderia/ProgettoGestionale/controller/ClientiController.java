@@ -49,9 +49,9 @@ public class ClientiController {
     }
 
     @DeleteMapping("anagrafica/clienti")
-    public ResponseEntity<String> deleteAllClienti() {
+    public void deleteAllClienti() {
 
-        return ResponseEntity.ok(clienteService.deleteClienti());
+        clienteService.deleteClienti();
     }
 
     @PutMapping("anagrafica/cliente/{idCliente}")

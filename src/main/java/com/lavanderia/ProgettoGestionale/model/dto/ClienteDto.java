@@ -1,10 +1,12 @@
 package com.lavanderia.ProgettoGestionale.model.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Builder
 @Data
+@AllArgsConstructor
+@Setter
+@Getter
 public class ClienteDto {
 
     private String nome;

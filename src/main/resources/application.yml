@@ -2,21 +2,24 @@
 
 # Server configuration
 server:
-  port: 8080
+  port: 8081
 
 # Database configuration
 spring:
   kafka:
-    bootstrap-servers: localhost:9092  # Kafka Server
+    bootstrap-servers: localhost:29092
     consumer:
-      group-id: my-consumer-group  # Gruppo di consumatori
-      auto-offset-reset: earliest   # Inizia a leggere dall'inizio del topic
-    listener:
-      missing-topics-fatal: false   # Gestisce l'assenza di topic
-      value-deserializer: org.springframework.kafka.core.serializer.JsonDeserializer
+      group-id: my-consumer-group
+      auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: com.lavanderia.ProgettoGestionale.model.dto
+        spring.json.value.default.type: com.lavanderia.ProgettoGestionale.model.dto.ClienteDto
+    listener:
+      missing-topics-fatal: false
   datasource:
-    url: jdbc:mysql://mysql-container:3306/lavanderia_anagrafica
+    url: jdbc:mysql://localhost:3306/lavanderia
     username: root
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
