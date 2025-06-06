@@ -1,6 +1,7 @@
 package com.lavanderia.ProgettoGestionale.controller;
 
 import com.lavanderia.ProgettoGestionale.model.dto.ClienteDto;
+import com.lavanderia.ProgettoGestionale.model.dto.GenericFilter;
 import com.lavanderia.ProgettoGestionale.model.entity.Cliente;
 import com.lavanderia.ProgettoGestionale.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +22,15 @@ public class ClientiController {
 
     @GetMapping("anagrafica/clienti")
     public ResponseEntity<List<Cliente>> getClienti() {
-
         return ResponseEntity.ok(clienteService.getAllClienti());
     }
 
 
     @GetMapping("anagrafica/cliente")
-    public ResponseEntity<List<Cliente>> getCliente(@RequestParam(required = false) Integer idCliente,
-                                                    @RequestParam(required = false) String nome,
-                                                    @RequestParam(required = false) String cognome) {
-
-
-        return ResponseEntity.ok(clienteService.ricercaEstesa(idCliente, nome, cognome));
+    public ResponseEntity<List<Cliente>> getCliente(@ModelAttribute GenericFilter request) {
+        return ResponseEntity.ok(clienteService.ricercaEstesa(request.getIdCliente(),
+                request.getNome(),
+                request.getCognome()));
     }
 
     @PostMapping(value = "anagrafica/cliente", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -42,22 +40,19 @@ public class ClientiController {
     }
 
     @DeleteMapping(value = "anagrafica/cliente/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
-    public void deleteCliente(@PathVariable Integer id) {
-
-        clienteService.deleteCliente(id);
+    public void deleteCliente(@ModelAttribute GenericFilter request) {
+        clienteService.deleteCliente(request.getIdCliente());
 
     }
 
     @DeleteMapping("anagrafica/clienti")
     public void deleteAllClienti() {
-
         clienteService.deleteClienti();
     }
 
     @PutMapping("anagrafica/cliente/{idCliente}")
-    public void updateCliente(@RequestBody ClienteDto clienteDto, @PathVariable Integer idCliente) {
-
-        clienteService.updateCliente(clienteDto, idCliente);
+    public void updateCliente(@RequestBody ClienteDto clienteDto, @ModelAttribute GenericFilter request) {
+        clienteService.updateCliente(clienteDto, request.getIdCliente());
     }
 
 }
